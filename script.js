@@ -1,22 +1,41 @@
-// Mobile Navigation Toggle
-const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+// Custom cursor
+const cursor = document.querySelector('.cursor');
+let mouseX = 0;
+let mouseY = 0;
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
 
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
+// Smooth cursor animation
+function animateCursor() {
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+    requestAnimationFrame(animateCursor);
+}
+
+// Start cursor animation only on desktop
+if (window.innerWidth > 768) {
+    animateCursor();
+}
+
+// Cursor hover effects
+const hoverTargets = document.querySelectorAll('a, button, .project');
+hoverTargets.forEach(target => {
+    target.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'scale(2)';
+        cursor.style.borderColor = '#8b5cf6';
+    });
+    
+    target.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'scale(1)';
+        cursor.style.borderColor = '#6366f1';
     });
 });
 
-// Smooth Scrolling for Navigation Links
+// Smooth scrolling for navigation
+const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -24,21 +43,19 @@ navLinks.forEach(link => {
         const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
-            const navHeight = document.querySelector('.navbar').offsetHeight;
-            const targetPosition = targetSection.offsetTop - navHeight;
-            
+            const offsetTop = targetSection.offsetTop - 100;
             window.scrollTo({
-                top: targetPosition,
+                top: offsetTop,
                 behavior: 'smooth'
             });
         }
     });
 });
 
-// Scroll-triggered animations
+// Scroll animations for projects and other elements
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -50,81 +67,124 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Apply animation to elements
+// Apply scroll animations
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.skill-item, .project-card, .contact-link');
+    const animatedElements = document.querySelectorAll('.project, .tech, .section-title');
     
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(el);
     });
 });
 
-// Active Navigation Link Highlighting
+// Parallax effect for floating shapes
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navHeight = document.querySelector('.navbar').offsetHeight;
-    let currentSection = '';
+    const scrolled = window.pageYOffset;
+    const shapes = document.querySelectorAll('.shape');
+    
+    shapes.forEach((shape, index) => {
+        const speed = 0.1 + (index * 0.05);
+        const yPos = -(scrolled * speed);
+        shape.style.transform = `translateY(${yPos}px)`;
+    });
+});
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - navHeight - 100;
-        const sectionHeight = section.offsetHeight;
+// Dynamic text animation for tagline
+const tagline = document.querySelector('.tagline');
+const highlights = ['cool stuff', 'amazing apps', 'web magic', 'digital dreams'];
+let currentIndex = 0;
+
+function rotateHighlight() {
+    const highlight = document.querySelector('.highlight');
+    if (highlight) {
+        highlight.style.opacity = '0';
+        highlight.style.transform = 'translateY(10px)';
         
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Add typing effect to hero subtitle
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % highlights.length;
+            highlight.textContent = highlights[currentIndex];
+            highlight.style.opacity = '1';
+            highlight.style.transform = 'translateY(0)';
+        }, 300);
     }
-    
-    setTimeout(type, 1000); // Start after 1 second delay
 }
 
-// Initialize typing effect when page loads
+// Start text rotation after initial load
+setTimeout(() => {
+    setInterval(rotateHighlight, 3000);
+}, 2000);
+
+// Add interactive hover effects to tech stack
+const techElements = document.querySelectorAll('.tech');
+techElements.forEach(tech => {
+    tech.addEventListener('mouseenter', () => {
+        tech.style.transform = 'scale(1.1) rotate(2deg)';
+    });
+    
+    tech.addEventListener('mouseleave', () => {
+        tech.style.transform = 'scale(1) rotate(0deg)';
+    });
+});
+
+// Projects hover effect with cursor
+const projects = document.querySelectorAll('.project');
+projects.forEach(project => {
+    project.addEventListener('mouseenter', () => {
+        project.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+    
+    project.addEventListener('mouseleave', () => {
+        project.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Add loading animation
+window.addEventListener('load', () => {
+    document.body.style.opacity = '1';
+});
+
+// Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    const originalText = heroSubtitle.textContent;
-    typeWriter(heroSubtitle, originalText, 80);
-});
-
-// Add smooth hover effects for buttons
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px)';
-    });
+    // Add smooth page reveal
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.8s ease';
     
-    btn.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+    
+    // Add stagger animation to hero elements
+    const heroElements = ['.hello', '.name', '.tagline', '.cta-btn'];
+    heroElements.forEach((selector, index) => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.style.animationDelay = `${0.2 + (index * 0.2)}s`;
+        }
     });
 });
 
-// Contact form submission (if you add a form later)
-const contactForm = document.querySelector('#contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Add form submission logic here
-        alert('Thank you for your message! I\'ll get back to you soon.');
-    });
-}
+// Easter egg: konami code
+let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+let konamiIndex = 0;
+
+document.addEventListener('keydown', (e) => {
+    if (e.keyCode === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            // Easter egg activated!
+            document.body.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd)';
+            document.body.style.backgroundSize = '400% 400%';
+            document.body.style.animation = 'gradient 3s ease infinite';
+            
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+            
+            konamiIndex = 0;
+        }
+    } else {
+        konamiIndex = 0;
+    }
+});

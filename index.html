@@ -3,129 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Derzic - Full Stack Developer</title>
-    <meta name="description" content="Daniel Derzic - Full Stack Developer specializing in modern web technologies and innovative solutions.">
+    <title>Daniel Derzic ✨</title>
+    <meta name="description" content="Daniel Derzic - Building cool stuff on the web">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">Daniel Derzic</div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+    <div class="cursor"></div>
+    
+    <nav class="nav">
+        <div class="nav-brand">DD</div>
+        <div class="nav-links">
+            <a href="#work" class="nav-link">Work</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Say Hi</a>
         </div>
     </nav>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Daniel Derzic</h1>
-                <h2 class="hero-subtitle">Full Stack Developer</h2>
-                <p class="hero-description">Building innovative web solutions with modern technologies</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <div class="hero-text">
+                    <p class="hello">👋 Hey, I'm</p>
+                    <h1 class="name">Daniel Derzic</h1>
+                    <p class="tagline">I build <span class="highlight">cool stuff</span> on the web</p>
+                </div>
+                <div class="hero-cta">
+                    <a href="#work" class="cta-btn">See my work</a>
+                </div>
+            </div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </section>
+
+        <section id="work" class="work">
+            <h2 class="section-title">Things I've Built</h2>
+            <div class="projects">
+                <div class="project" data-tech="React • Node.js">
+                    <div class="project-info">
+                        <h3>Project One</h3>
+                        <p>A really cool project description that explains what this does and why it's awesome.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Site</a>
+                            <a href="#" class="project-link">Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project" data-tech="Vue • Firebase">
+                    <div class="project-info">
+                        <h3>Project Two</h3>
+                        <p>Another amazing project that showcases different skills and technologies.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Site</a>
+                            <a href="#" class="project-link">Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project" data-tech="Next.js • TypeScript">
+                    <div class="project-info">
+                        <h3>Project Three</h3>
+                        <p>One more cool project to round out this portfolio section nicely.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Site</a>
+                            <a href="#" class="project-link">Code</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <p>I'm a passionate full stack developer with expertise in building scalable web applications. I love creating solutions that make a difference and continuously learning new technologies to stay at the forefront of web development.</p>
+            <div class="about-content">
+                <h2 class="section-title">A bit about me</h2>
+                <div class="about-text">
+                    <p>I'm a developer who loves creating digital experiences that people actually want to use. When I'm not coding, you'll find me exploring new technologies or thinking about how to make the web a more interesting place.</p>
+                    <p>Currently working with React, Node.js, and everything in between. Always learning, always building.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="skills" class="skills">
-            <div class="container">
-                <h2 class="section-title">Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <i class="fab fa-js-square"></i>
-                        <h3>JavaScript</h3>
-                        <p>ES6+, TypeScript</p>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-react"></i>
-                        <h3>Frontend</h3>
-                        <p>React, Vue.js, HTML5, CSS3</p>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-server"></i>
-                        <h3>Backend</h3>
-                        <p>Node.js, Python, Express</p>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-database"></i>
-                        <h3>Database</h3>
-                        <p>MongoDB, PostgreSQL, MySQL</p>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-aws"></i>
-                        <h3>Cloud</h3>
-                        <p>AWS, Docker, CI/CD</p>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-git-alt"></i>
-                        <h3>Tools</h3>
-                        <p>Git, VS Code, Linux</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Coming Soon</h3>
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        <p>Exciting projects are in development. Stay tuned for updates!</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                        </div>
-                    </div>
+                <div class="tech-stack">
+                    <span class="tech">JavaScript</span>
+                    <span class="tech">React</span>
+                    <span class="tech">Node.js</span>
+                    <span class="tech">TypeScript</span>
+                    <span class="tech">Python</span>
+                    <span class="tech">PostgreSQL</span>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="contact-content">
-                    <p>I'm always open to discussing new opportunities and interesting projects.</p>
-                    <div class="contact-links">
-                        <a href="mailto:daniel@danielderzic.dev" class="contact-link">
-                            <i class="fas fa-envelope"></i>
-                            daniel@danielderzic.dev
-                        </a>
-                        <a href="https://github.com/daniel-ddtech" class="contact-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                            GitHub
-                        </a>
-                        <a href="https://linkedin.com/in/danielderzic" class="contact-link" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                            LinkedIn
-                        </a>
+            <div class="contact-content">
+                <h2 class="section-title">Let's work together</h2>
+                <p class="contact-text">Got a project in mind? Want to chat about tech? Or just want to say hello?</p>
+                <div class="contact-links">
+                    <a href="mailto:daniel@danielderzic.dev" class="contact-link primary">
+                        Send me an email
+                    </a>
+                    <div class="social-links">
+                        <a href="https://github.com/daniel-ddtech" target="_blank" class="social-link">GitHub</a>
+                        <a href="https://linkedin.com/in/danielderzic" target="_blank" class="social-link">LinkedIn</a>
+                        <a href="https://twitter.com/danielderzic" target="_blank" class="social-link">Twitter</a>
                     </div>
                 </div>
             </div>
@@ -133,9 +113,7 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Daniel Derzic. All rights reserved.</p>
-        </div>
+        <p>© 2024 Daniel Derzic • Built with ❤️ and lots of ☕</p>
     </footer>
 
     <script src="script.js"></script>
